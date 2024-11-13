@@ -18,991 +18,983 @@
   <meta name="twitter:description" content="Elimina el fondo de tus imágenes en segundos, sin registro ni tarifas. ¡Gratis siempre!">
   <meta name="twitter:image" content="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/quitafondo-1.svg">
 
-  <html>
-  
-  <head>
-    <base href="https://webcincodev.com/">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QuitafondoPro - Elimina el fondo de tus imágenes</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: hsl(276, 72%, 59%);
-      --secondary-color: #8e44ad;
-      --accent-color: hsl(288, 100%, 35%);
-      --text-color: #333;
-      --bg-color: #f8f9fa;
-    }
-  
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      line-height: 1.6;
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-    }
-  
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px; /* Accounts for fixed header */
-    }
-  
-    .hero {
-      background-color: white;
-      color: var(--text-color);
-      padding: 3rem 1rem;
-      position: relative;
-    }
-  
-    .hero-content {
-      display: flex;
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  :root {
+    --primary-color: hsl(298, 95%, 24%);
+    --secondary-color: #8e44ad;
+    --accent-color: hsl(303, 100%, 31%);
+    --text-color: #333;
+    --bg-color: #f8f9fa;
+  }
+
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Accounts for fixed header */
+  }
+
+  .hero {
+    background-color: white;
+    color: var(--text-color);
+    padding: 3rem 1rem;
+    position: relative;
+  }
+
+  .hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-text {
+    flex: 1;
+    padding-right: 2rem;
+  }
+
+  .hero-image {
+    flex: 1;
+    text-align: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out 0.3s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .main-nav .logo {
+    max-width: 200px;
+    margin: 0;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+  }
+
+  .main-nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-nav ul li {
+    margin-left: 1rem;
+  }
+
+  .main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  .main-nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  .hero {
+    padding-top: 80px; 
+  }
+
+  .logo {
+    max-width: 200px;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite;
+  }
+
+  .cta-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: bounceIn 1s;
+  }
+
+  .cta-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+  }
+
+  #app-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  #upload-container {
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  #upload-container:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+  }
+
+  #file-input {
+    display: none;
+  }
+
+  #upload-label {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  #upload-label:hover {
+    background-color: #2980b9;
+  }
+
+  #preview {
+    max-width: 100%;
+    max-height: 400px;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  #preview:hover {
+    transform: scale(1.05);
+  }
+
+  #removeBgButton, #downloadButton {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 0.5rem;
+  }
+
+  #removeBgButton:hover, #downloadButton:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+  }
+
+  #loading {
+    display: none;
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .star-animation {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+
+  .loading-logo {
+    width: 100%;
+    height: 100%;
+    animation: pulse 2s infinite;
+  }
+
+  .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="5,0 6.5,3.5 10,4 7.5,6.5 8,10 5,8 2,10 2.5,6.5 0,4 3.5,3.5" fill="%23FFD700"/></svg>');
+    background-size: 10px 10px;
+    animation: rotate 10s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  #background-options {
+    display: none;
+    margin-top: 2rem;
+  }
+
+  .background-gallery {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .background-option {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  .background-option:hover, .background-option.selected {
+    border-color: var(--primary-color);
+  }
+
+  #result {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  #resultImage {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    margin: 0 auto;
+  }
+
+  #resultImage:hover {
+    transform: scale(1.05);
+  }
+
+  .disclaimer {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 2rem;
+  }
+
+  .carousel-box {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .carousel-box h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: fit-content;
+  }
+
+  .example-item {
+    flex: 0 0 200px;
+    margin: 0 10px;
+    text-align: center;
+  }
+
+  .example-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+
+  .info-section {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .info-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .info-section ol {
+    padding-left: 1.5rem;
+  }
+
+  .buy-coffee {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .buy-coffee a {
+    display: inline-block;
+    background-color: #FFDD00;
+    color: #000;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .buy-coffee a:hover {
+    background-color: #FFE44D;
+    transform: translateY(-2px);
+  }
+
+  .buy-coffee i {
+    margin-right: 0.5rem;
+  }
+
+  .accordion {
+    margin-top: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .accordion h3 {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .accordion-content {
+    display: none;
+    padding: 1rem;
+  }
+
+  .accordion-content h4 {
+    color: var(--primary-color);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .accordion-content p {
+    margin-top: 0;
+  }
+
+  .accordion.active .accordion-content {
+    display: block;
+  }
+
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1001;
+  }
+
+  .whatsapp-float:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    .main-nav {
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 1rem;
     }
-  
+
+    .main-nav .logo {
+      max-width: 150px;
+      margin-bottom: 0;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .main-nav ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: var(--accent-color);
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .main-nav ul.show {
+      display: flex;
+    }
+
+    .main-nav ul li {
+      margin-left: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero {
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      flex-direction: column;
+    }
+
     .hero-text {
-      flex: 1;
-      padding-right: 2rem;
+      padding-right: 0;
+      margin-bottom: 2rem;
     }
-  
+
     .hero-image {
-      flex: 1;
-      text-align: center;
+      order: -1; 
     }
-  
+
     .hero-image img {
       max-width: 100%;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-  
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1s ease-out;
-    }
-  
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeInUp 1s ease-out 0.3s;
+  }
+
+  @keyframes fadeInUp {
+    from {
       opacity: 0;
-      animation-fill-mode: forwards;
+      transform: translateY(20px);
     }
-  
-    .main-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: var(--accent-color);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-  
-    .main-nav .logo {
-      max-width: 200px;
-      margin: 0;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
     }
-  
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-    }
-  
-    .main-nav ul {
-      display: flex;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-  
-    .main-nav ul li {
-      margin-left: 1rem;
-    }
-  
-    .main-nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-  
-    .main-nav ul li a:hover {
-      color: var(--accent-color);
-    }
-  
-    .hero {
-      padding-top: 80px; 
-    }
-  
-    .logo {
-      max-width: 200px;
-      margin-bottom: 1.5rem;
-      animation: pulse 2s infinite;
-    }
-  
-    .cta-button {
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      animation: bounceIn 1s;
-    }
-  
-    .cta-button:hover {
-      background-color: #c0392b;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-    }
-  
-    #app-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      text-align: center;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-  
-    #upload-container {
-      background-color: var(--bg-color);
-      border-radius: 8px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      transition: all 0.3s ease;
-    }
-  
-    #upload-container:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      transform: translateY(-5px);
-    }
-  
-    #file-input {
-      display: none;
-    }
-  
-    #upload-label {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-  
-    #upload-label:hover {
-      background-color: #2980b9;
-    }
-  
-    #preview {
-      max-width: 100%;
-      max-height: 400px;
-      margin: 1rem auto;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-  
-    #preview:hover {
+    50% {
       transform: scale(1.05);
     }
-  
-    #removeBgButton, #downloadButton {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      margin: 0.5rem;
+    100% {
+      transform: scale(1);
     }
-  
-    #removeBgButton:hover, #downloadButton:hover {
-      background-color: #2980b9;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+  }
+
+  @keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+      transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
     }
-  
-    #loading {
-      display: none;
-      margin-top: 1rem;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    0% {
+      opacity: 0;
+      transform: scale3d(.3, .3, .3);
     }
-  
-    .star-animation {
-      position: relative;
-      width: 100px;
-      height: 100px;
+    20% {
+      transform: scale3d(1.1, 1.1, 1.1);
     }
-  
-    .loading-logo {
-      width: 100%;
-      height: 100%;
-      animation: pulse 2s infinite;
+    40% {
+      transform: scale3d(.9, .9, .9);
     }
-  
-    .stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="5,0 6.5,3.5 10,4 7.5,6.5 8,10 5,8 2,10 2.5,6.5 0,4 3.5,3.5" fill="%23FFD700"/></svg>');
-      background-size: 10px 10px;
-      animation: rotate 10s linear infinite;
+    60% {
+      opacity: 1;
+      transform: scale3d(1.03, 1.03, 1.03);
     }
-  
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    80% {
+      transform: scale3d(.97, .97, .97);
     }
-  
-    #background-options {
-      display: none;
-      margin-top: 2rem;
+    100% {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
     }
-  
-    .background-gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-  
-    .background-option {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-  
-    .background-option:hover, .background-option.selected {
-      border-color: var(--primary-color);
-    }
-  
-    #result {
-      margin-top: 2rem;
-      text-align: center;
-    }
-  
-    #resultImage {
-      max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      margin: 0 auto;
-    }
-  
-    #resultImage:hover {
-      transform: scale(1.05);
-    }
-  
-    .disclaimer {
-      font-size: 0.8rem;
-      color: #777;
-      margin-top: 2rem;
-    }
-  
-    .carousel-box {
-      margin-top: 2rem;
-      padding: 1rem;
-      background-color: #f8f9fa;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-  
-    .carousel-box h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-    }
-  
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-    }
-  
-    .carousel-slide {
-      display: flex;
-      transition: transform 0.5s ease;
-      width: fit-content;
-    }
-  
-    .example-item {
-      flex: 0 0 200px;
-      margin: 0 10px;
-      text-align: center;
-    }
-  
-    .example-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-  
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      margin-top: 2rem;
-    }
-  
-    .info-section {
-      background-color: #f8f9fa;
-      border-radius: 8px;
-      padding: 2rem;
-      margin-top: 2rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-  
-    .info-section h2 {
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
-  
-    .info-section ol {
-      padding-left: 1.5rem;
-    }
-  
-    .buy-coffee {
-      margin-top: 2rem;
-      text-align: center;
-    }
-  
-    .buy-coffee a {
-      display: inline-block;
-      background-color: #FFDD00;
-      color: #000;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-  
-    .buy-coffee a:hover {
-      background-color: #FFE44D;
-      transform: translateY(-2px);
-    }
-  
-    .buy-coffee i {
-      margin-right: 0.5rem;
-    }
-  
-    .accordion {
-      margin-top: 2rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-  
-    .accordion h3 {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 1rem;
-      margin: 0;
-      cursor: pointer;
-    }
-  
-    .accordion-content {
-      display: none;
-      padding: 1rem;
-    }
-  
-    .accordion-content h4 {
-      color: var(--primary-color);
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-    }
-  
-    .accordion-content p {
-      margin-top: 0;
-    }
-  
-    .accordion.active .accordion-content {
-      display: block;
-    }
-  
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 30px;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      z-index: 1001;
-    }
-  
-    .whatsapp-float:hover {
-      background-color: #128C7E;
-      transform: scale(1.1);
-    }
-  
-    @media (max-width: 768px) {
-      .main-nav {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-      }
-  
-      .main-nav .logo {
-        max-width: 150px;
-        margin-bottom: 0;
-      }
-  
-      .menu-toggle {
-        display: block;
-      }
-  
-      .main-nav ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--accent-color);
-        flex-direction: column;
-        padding: 1rem;
-      }
-  
-      .main-nav ul.show {
-        display: flex;
-      }
-  
-      .main-nav ul li {
-        margin-left: 0;
-        margin-bottom: 0.5rem;
-      }
-  
-      .hero {
-        padding-top: 80px;
-      }
-  
-      .hero-content {
-        flex-direction: column;
-      }
-  
-      .hero-text {
-        padding-right: 0;
-        margin-bottom: 2rem;
-      }
-  
-      .hero-image {
-        order: -1; 
-      }
-  
-      .hero-image img {
-        max-width: 100%;
-        height: auto;
-      }
-    }
-  
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-  
-    @keyframes bounceIn {
-      0%, 20%, 40%, 60%, 80%, 100% {
-        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-      }
-      0% {
-        opacity: 0;
-        transform: scale3d(.3, .3, .3);
-      }
-      20% {
-        transform: scale3d(1.1, 1.1, 1.1);
-      }
-      40% {
-        transform: scale3d(.9, .9, .9);
-      }
-      60% {
-        opacity: 1;
-        transform: scale3d(1.03, 1.03, 1.03);
-      }
-      80% {
-        transform: scale3d(.97, .97, .97);
-      }
-      100% {
-        opacity: 1;
-        transform: scale3d(1, 1, 1);
-      }
-    }
-  
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
-  </head>
-  <body>
-    <header class="hero">
-      <nav class="main-nav">
-        <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/quitafondo-1.svg" alt="QuitafondoPro Logo" class="logo">
-        <div class="menu-toggle">☰</div>
-        <ul>
-          <li><a href="#app-container">Empieza ahora</a></li>
-          <li><a href="#instructions">Instrucciones de uso</a></li>
-          <li><a href="#policies">Políticas de Uso</a></li>
-          <li><a href="#coffee">Invítame a un café</a></li>
-        </ul>
-      </nav>
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>QuitafondoPro</h1>
-          <p>Elimina el fondo de tus imágenes en segundos, sin registro, ni tarifas. ¡Gratis siempre! Transforma tus fotos de manera rápida y sencilla con nuestra herramienta profesional.</p>
-          <button class="cta-button" onclick="showApp()">Prueba Ahora</button>
-        </div>
-        <div class="hero-image">
-          <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/Leonardo_Phoenix_Un_un_rostro_de_compositor_hombre_latino_afro_1.jpg" alt="Compositor latino afro" width="400" height="400">
-        </div>
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <nav class="main-nav">
+      <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/quitafondo-1.svg" alt="QuitafondoPro Logo" class="logo">
+      <div class="menu-toggle">☰</div>
+      <ul>
+        <li><a href="#app-container">Empieza ahora</a></li>
+        <li><a href="#instructions">Instrucciones de uso</a></li>
+        <li><a href="#policies">Políticas de Uso</a></li>
+        <li><a href="#coffee">Invítame a un café</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>QuitafondoPro</h1>
+        <p>Elimina el fondo de tus imágenes en segundos, sin registro, ni tarifas. ¡Gratis siempre! Transforma tus fotos de manera rápida y sencilla con nuestra herramienta profesional.</p>
+        <button class="cta-button" onclick="showApp()">Prueba Ahora</button>
       </div>
-    </header>
-  
-    <div id="app-container">
-      <h2 id="instructions">Cargar imagen o arrastrar un archivo</h2>
-      <p>También puedes pegar una imagen o URL</p>
-      <div id="upload-container">
-        <input type="file" id="file-input" accept="image/*">
-        <label for="file-input" id="upload-label">Seleccionar foto</label>
-        <img id="preview" alt="Vista previa de la imagen" style="display:none;">
-        <button id="removeBgButton" style="display:none;">Quitar fondo</button>
-        <div id="loading">
-          <div class="star-animation">
-            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/quitafondo-1.svg" alt="QuitafondoPro Logo" class="loading-logo">
-            <div class="stars"></div>
-          </div>
-          <p>Procesando imagen...</p>
-        </div>
-        <div id="size-options" style="display:none;">
-          <p>Selecciona el tamaño de descarga:</p>
-          <select id="download-size">
-            <option value="small">Pequeño</option>
-            <option value="medium" selected="">Grande</option>
-            <option value="full">Completo</option>
-          </select>
-        </div>
-        <button id="downloadButton" style="display:none;">Descargar imagen</button>
+      <div class="hero-image">
+        <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/Leonardo_Phoenix_Un_un_rostro_de_compositor_hombre_latino_afro_1.jpg" alt="Compositor latino afro" width="400" height="400">
       </div>
-      <div id="result" style="text-align: center;">
-        <img id="resultImage" alt="Imagen con fondo removido" style="display:none; max-width: 100%; margin: 0 auto;">
-        <p id="resultText"></p>
-      </div>
-  
-      <div id="background-options" style="display:none;">
-        <h3>Insertar nuevo fondo</h3>
-        <div class="background-gallery">
-          <img src="background1.jpg" alt="Fondo 1" class="background-option">
-          <img src="background2.jpg" alt="Fondo 2" class="background-option">
-          <img src="background3.jpg" alt="Fondo 3" class="background-option">
-        </div>
-      </div>
-  
-      <p class="disclaimer">Al subir una imagen o URL, aceptas nuestros Condiciones del servicio. Para saber más sobre cómo maneja tus datos personales remove.bg, echa un vistazo a nuestra Política de privacidad.</p>
-      
-      <div class="accordion" id="policies">
-        <h3>Políticas de Uso</h3>
-        <div class="accordion-content">
-          <h4>Uso Aceptable</h4>
-          <p>QuitafondoPro está diseñado para uso personal y comercial. Utilice la herramienta de manera responsable y ética.</p>
-          
-          <h4>Propiedad Intelectual</h4>
-          <p>Respete los derechos de autor y las marcas registradas al utilizar imágenes. No utilice imágenes para las que no tenga los derechos correspondientes.</p>
-          
-          <h4>Privacidad</h4>
-          <p>No subimos ni almacenamos sus imágenes. Todas las operaciones se realizan en su navegador.</p>
-          
-          <h4>Limitación de Responsabilidad</h4>
-          <p>QuitafondoPro se proporciona "tal cual" sin garantías. No nos hacemos responsables de ningún daño resultante del uso de la herramienta.</p>
-        </div>
-      </div>
-      
-      <div class="info-section">
-        <h2>Instrucciones de uso</h2>
-        <ol>
-          <li>Haz clic en "Seleccionar foto" o arrastra una imagen al área designada.</li>
-          <li>Espera a que se procese la imagen.</li>
-          <li>Descarga tu imagen sin fondo con el botón "Descargar imagen".</li>
-        </ol>
-        <h2>Sobre QuitafondoPro</h2>
-        <p>Esta herramienta fue creada por @webcincodev y siempre será gratuita para todos los usuarios.</p>
-      </div>
-  
-      <div class="buy-coffee" id="coffee">
-        <a href="https://buymeacoffee.com/webcincodev" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-coffee"></i> Invítame a un café
-        </a>
-      </div>
-  
-      <div class="carousel-box">
-        <h2>Antes y Después</h2>
-        <div class="carousel-container">
-          <div class="carousel-slide">
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/etyu.jpg" alt="Ejemplo 1 - Antes">
-              <p>Antes</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx_-20.png" alt="Ejemplo 1 - Después">
-              <p>Después</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx_-19.png" alt="Ejemplo 2 - Antes">
-              <p>Antes</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/imagen_sin_fondo.png" alt="Ejemplo 2 - Después">
-              <p>Después</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image-5-1024x1535-1.png" alt="Ejemplo 3 - Antes">
-              <p>Antes</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image-5-1024x1535-removebg-preview.png" alt="Ejemplo 3 - Después">
-              <p>Después</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx_-1.jpg" alt="Ejemplo 4 - Antes">
-              <p>Antes</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx___1_-removebg-preview.png" alt="Ejemplo 4 - Después">
-              <p>Después</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/un-logo-neon-tigre-1.png" alt="Ejemplo 5 - Antes">
-              <p>Antes</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/un_logo_neon_tigre-removebg-preview.png" alt="Ejemplo 5 - Después">
-              <p>Después</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/dd698ea293bce631bf709d3174c9d56c.png" alt="Ejemplo 6 - Antes">
-              <p>Antes</p>
-            </div>
-            <div class="example-item">
-              <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/dd698ea293bce631bf709d3174c9d56c-removebg-preview.png" alt="Ejemplo 6 - Después">
-              <p>Después</p>
-            </div>
-          </div>
-        </div>
-      </div>
-  
     </div>
-  
-    <footer>
-      <p>Copyright © 2024 WebCincoDev. Todos los derechos reservados.</p>
-    </footer>
-  
-    <a href="https://wa.me/573052891719" class="whatsapp-float" target="_blank">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  
-    <script>
-      function showApp() {
-        document.getElementById('app-container').scrollIntoView({ behavior: 'smooth' });
+  </header>
+
+  <div id="app-container">
+    <h2 id="instructions">Cargar imagen o arrastrar un archivo</h2>
+    <p>También puedes pegar una imagen o URL</p>
+    <div id="upload-container">
+      <input type="file" id="file-input" accept="image/*">
+      <label for="file-input" id="upload-label">Seleccionar foto</label>
+      <img id="preview" alt="Vista previa de la imagen" style="display:none;">
+      <button id="removeBgButton" style="display:none;">Quitar fondo</button>
+      <div id="loading">
+        <div class="star-animation">
+          <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/quitafondo-1.svg" alt="QuitafondoPro Logo" class="loading-logo">
+          <div class="stars"></div>
+        </div>
+        <p>Procesando imagen...</p>
+      </div>
+      <div id="size-options" style="display:none;">
+        <p>Selecciona el tamaño de descarga:</p>
+        <select id="download-size">
+          <option value="small">Pequeño</option>
+          <option value="medium" selected="">Grande</option>
+          <option value="full">Completo</option>
+        </select>
+      </div>
+      <button id="downloadButton" style="display:none;">Descargar imagen</button>
+    </div>
+    <div id="result" style="text-align: center;">
+      <img id="resultImage" alt="Imagen con fondo removido" style="display:none; max-width: 100%; margin: 0 auto;">
+      <p id="resultText"></p>
+    </div>
+
+    <div id="background-options" style="display:none;">
+      <h3 style="display:none"></h3>
+      <div>
+</div>
+    </div>
+
+    <p class="disclaimer">Al subir una imagen o URL, aceptas nuestros Condiciones del servicio. Para saber más sobre cómo maneja tus datos personales remove.bg, echa un vistazo a nuestra Política de privacidad.</p>
+    
+    <div class="accordion" id="policies">
+      <h3>Políticas de Uso</h3>
+      <div class="accordion-content">
+        <h4>Uso Aceptable</h4>
+        <p>QuitafondoPro está diseñado para uso personal y comercial. Utilice la herramienta de manera responsable y ética.</p>
+        
+        <h4>Propiedad Intelectual</h4>
+        <p>Respete los derechos de autor y las marcas registradas al utilizar imágenes. No utilice imágenes para las que no tenga los derechos correspondientes.</p>
+        
+        <h4>Privacidad</h4>
+        <p>No subimos ni almacenamos sus imágenes. Todas las operaciones se realizan en su navegador.</p>
+        
+        <h4>Limitación de Responsabilidad</h4>
+        <p>QuitafondoPro se proporciona "tal cual" sin garantías. No nos hacemos responsables de ningún daño resultante del uso de la herramienta.</p>
+      </div>
+    </div>
+    
+    <div class="info-section">
+      <h2>Instrucciones de uso</h2>
+      <ol>
+        <li>Haz clic en "Seleccionar foto" o arrastra una imagen al área designada.</li>
+        <li>Espera a que se procese la imagen.</li>
+        <li>Descarga tu imagen sin fondo con el botón "Descargar imagen".</li>
+      </ol>
+      <h2>Sobre QuitafondoPro</h2>
+      <p>Esta herramienta fue creada por @webcincodev y siempre será gratuita para todos los usuarios.</p>
+    </div>
+
+    <div class="buy-coffee" id="coffee">
+      <a href="https://buymeacoffee.com/webcincodev" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-coffee"></i> Invítame a un café
+      </a>
+    </div>
+
+    <div class="carousel-box">
+      <h2>Antes y Después</h2>
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/etyu.jpg" alt="Ejemplo 1 - Antes">
+            <p>Antes</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx_-20.png" alt="Ejemplo 1 - Después">
+            <p>Después</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx_-19.png" alt="Ejemplo 2 - Antes">
+            <p>Antes</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/imagen_sin_fondo.png" alt="Ejemplo 2 - Después">
+            <p>Después</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image-5-1024x1535-1.png" alt="Ejemplo 3 - Antes">
+            <p>Antes</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image-5-1024x1535-removebg-preview.png" alt="Ejemplo 3 - Después">
+            <p>Después</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx_-1.jpg" alt="Ejemplo 4 - Antes">
+            <p>Antes</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/image_fx___1_-removebg-preview.png" alt="Ejemplo 4 - Después">
+            <p>Después</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/un-logo-neon-tigre-1.png" alt="Ejemplo 5 - Antes">
+            <p>Antes</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/un_logo_neon_tigre-removebg-preview.png" alt="Ejemplo 5 - Después">
+            <p>Después</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/dd698ea293bce631bf709d3174c9d56c.png" alt="Ejemplo 6 - Antes">
+            <p>Antes</p>
+          </div>
+          <div class="example-item">
+            <img src="https://www.webcincodev.com/blog/wp-content/uploads/2024/09/dd698ea293bce631bf709d3174c9d56c-removebg-preview.png" alt="Ejemplo 6 - Después">
+            <p>Después</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Copyright © 2024 WebCincoDev. Todos los derechos reservados.</p>
+  </footer>
+
+  <a href="https://wa.me/573052891719" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    function showApp() {
+      document.getElementById('app-container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const fileInput = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+    const removeBgButton = document.getElementById('removeBgButton');
+    const resultImage = document.getElementById('resultImage');
+    const resultText = document.getElementById('resultText');
+    const loadingDiv = document.getElementById('loading');
+    const downloadButton = document.getElementById('downloadButton');
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+          removeBgButton.style.display = 'inline-block';
+        };
+        reader.readAsDataURL(file);
       }
-  
-      const fileInput = document.getElementById('file-input');
-      const preview = document.getElementById('preview');
-      const removeBgButton = document.getElementById('removeBgButton');
-      const resultImage = document.getElementById('resultImage');
-      const resultText = document.getElementById('resultText');
-      const loadingDiv = document.getElementById('loading');
-      const downloadButton = document.getElementById('downloadButton');
-  
-      fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
+    });
+
+    removeBgButton.addEventListener('click', async () => {
+      if (!preview.src) {
+        alert('Por favor, selecciona una imagen primero.');
+        return;
+      }
+
+      loadingDiv.style.display = 'flex';
+      removeBgButton.style.display = 'none';
+      document.querySelector('.carousel-box').style.display = 'block'; // The carousel-box should remain visible during processing
+
+      try {
+        const response = await fetch(preview.src);
+        const blob = await response.blob();
+
+        const formData = new FormData();
+        formData.append('image_file', blob, 'image.png');
+        formData.append('size', 'auto');
+
+        const apiResponse = await fetch('https://api.remove.bg/v1.0/removebg', {
+          method: 'POST',
+          headers: {
+            'X-API-Key': 'o26niwSTzGKuYsFvAS9A5rx7'
+          },
+          body: formData
+        });
+
+        if (!apiResponse.ok) {
+          throw new Error(`Error en la API: ${apiResponse.status} ${apiResponse.statusText}`);
+        }
+
+        const result = await apiResponse.blob();
+        const url = URL.createObjectURL(result);
+        resultImage.src = url;
+        resultImage.style.display = 'block';
+        resultText.textContent = 'Fondo eliminado con éxito.';
+        downloadButton.style.display = 'inline-block';
+        document.getElementById('size-options').style.display = 'block';
+        showBackgroundOptions(); // Show background options after removing background
+      } catch (error) {
+        resultText.textContent = `Error: ${error.message}`;
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    });
+
+    downloadButton.addEventListener('click', async () => {
+      const size = document.getElementById('download-size').value;
+      const apiUrl = `https://api.remove.bg/v1.0/removebg?size=${size}`;
+
+      try {
+        const response = await fetch(preview.src);
+        const blob = await response.blob();
+
+        const formData = new FormData();
+        formData.append('image_file', blob, 'image.png');
+
+        const apiResponse = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'X-API-Key': 'o26niwSTzGKuYsFvAS9A5rx7'
+          },
+          body: formData
+        });
+
+        if (!apiResponse.ok) {
+          throw new Error(`Error en la API: ${apiResponse.status} ${apiResponse.statusText}`);
+        }
+
+        const result = await apiResponse.blob();
+        const url = URL.createObjectURL(result);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `imagen_sin_fondo_${size}.png`;
+        link.click();
+      } catch (error) {
+        alert(`Error al descargar: ${error.message}`);
+      }
+    });
+
+    // Drag and drop functionality
+    const dropZone = document.getElementById('upload-container');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+      dropZone.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+      dropZone.classList.remove('highlight');
+    }
+
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+
+      fileInput.files = files;
+      const event = new Event('change');
+      fileInput.dispatchEvent(event);
+    }
+
+    // Paste functionality
+    document.addEventListener('paste', function(e) {
+      const items = e.clipboardData.items;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          const blob = items[i].getAsFile();
           const reader = new FileReader();
-          reader.onload = (e) => {
-            preview.src = e.target.result;
+          reader.onload = function(event) {
+            preview.src = event.target.result;
             preview.style.display = 'block';
             removeBgButton.style.display = 'inline-block';
           };
-          reader.readAsDataURL(file);
+          reader.readAsDataURL(blob);
         }
+      }
+    });
+
+    const accordion = document.querySelector('.accordion');
+    const accordionHeader = accordion.querySelector('h3');
+
+    accordionHeader.addEventListener('click', () => {
+      accordion.classList.toggle('active');
+    });
+
+    const carousel = document.querySelector('.carousel-slide');
+    let currentIndex = 0;
+
+    function moveCarousel() {
+      const itemWidth = 220; // 200px width + 20px margin
+      const maxIndex = carousel.children.length;
+      
+      currentIndex++;
+      if (currentIndex >= maxIndex / 2) {
+        currentIndex = 0;
+      }
+      
+      carousel.style.transform = `translateX(-${currentIndex * itemWidth * 2}px)`;
+    }
+
+    // Auto-scroll the carousel every 3 seconds
+    setInterval(moveCarousel, 3000);
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('show');
+    });
+
+    // Background options functionality
+    function showBackgroundOptions() {
+      document.getElementById('background-options').style.display = 'block';
+    }
+
+    function changeBackground(selectedBackground) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const resultImg = document.getElementById('resultImage');
+      
+      canvas.width = resultImg.width;
+      canvas.height = resultImg.height;
+      
+      // Draw background
+      const bgImg = new Image();
+      bgImg.onload = () => {
+        ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+        
+        // Draw result image
+        ctx.drawImage(resultImg, 0, 0);
+        
+        // Update result image
+        resultImg.src = canvas.toDataURL();
+      };
+      bgImg.src = selectedBackground.src;
+    }
+
+    const backgroundOptions = document.querySelectorAll('.background-option');
+    backgroundOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        backgroundOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        changeBackground(option);
       });
-  
-      removeBgButton.addEventListener('click', async () => {
-        if (!preview.src) {
-          alert('Por favor, selecciona una imagen primero.');
-          return;
-        }
-  
-        loadingDiv.style.display = 'flex';
-        removeBgButton.style.display = 'none';
-  
-        try {
-          const response = await fetch(preview.src);
-          const blob = await response.blob();
-  
-          const formData = new FormData();
-          formData.append('image_file', blob, 'image.png');
-          formData.append('size', 'auto');
-  
-          const apiResponse = await fetch('https://api.remove.bg/v1.0/removebg', {
-            method: 'POST',
-            headers: {
-              'X-API-Key': 'o26niwSTzGKuYsFvAS9A5rx7'
-            },
-            body: formData
-          });
-  
-          if (!apiResponse.ok) {
-            throw new Error(`Error en la API: ${apiResponse.status} ${apiResponse.statusText}`);
-          }
-  
-          const result = await apiResponse.blob();
-          const url = URL.createObjectURL(result);
-          resultImage.src = url;
-          resultImage.style.display = 'block';
-          resultText.textContent = 'Fondo eliminado con éxito.';
-          downloadButton.style.display = 'inline-block';
-          document.getElementById('size-options').style.display = 'block';
-          showBackgroundOptions(); // Show background options after removing background
-        } catch (error) {
-          resultText.textContent = `Error: ${error.message}`;
-        } finally {
-          loadingDiv.style.display = 'none';
-        }
-      });
-  
-      downloadButton.addEventListener('click', async () => {
-        const size = document.getElementById('download-size').value;
-        const apiUrl = `https://api.remove.bg/v1.0/removebg?size=${size}`;
-  
-        try {
-          const response = await fetch(preview.src);
-          const blob = await response.blob();
-  
-          const formData = new FormData();
-          formData.append('image_file', blob, 'image.png');
-  
-          const apiResponse = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-              'X-API-Key': 'o26niwSTzGKuYsFvAS9A5rx7'
-            },
-            body: formData
-          });
-  
-          if (!apiResponse.ok) {
-            throw new Error(`Error en la API: ${apiResponse.status} ${apiResponse.statusText}`);
-          }
-  
-          const result = await apiResponse.blob();
-          const url = URL.createObjectURL(result);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = `imagen_sin_fondo_${size}.png`;
-          link.click();
-        } catch (error) {
-          alert(`Error al descargar: ${error.message}`);
-        }
-      });
-  
-      // Drag and drop functionality
-      const dropZone = document.getElementById('upload-container');
-  
-      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, preventDefaults, false);
-      });
-  
-      function preventDefaults(e) {
+    });
+
+    document.querySelectorAll('.main-nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
-      }
-  
-      ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, highlight, false);
-      });
-  
-      ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, unhighlight, false);
-      });
-  
-      function highlight(e) {
-        dropZone.classList.add('highlight');
-      }
-  
-      function unhighlight(e) {
-        dropZone.classList.remove('highlight');
-      }
-  
-      dropZone.addEventListener('drop', handleDrop, false);
-  
-      function handleDrop(e) {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-  
-        fileInput.files = files;
-        const event = new Event('change');
-        fileInput.dispatchEvent(event);
-      }
-  
-      // Paste functionality
-      document.addEventListener('paste', function(e) {
-        const items = e.clipboardData.items;
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].type.indexOf('image') !== -1) {
-            const blob = items[i].getAsFile();
-            const reader = new FileReader();
-            reader.onload = function(event) {
-              preview.src = event.target.result;
-              preview.style.display = 'block';
-              removeBgButton.style.display = 'inline-block';
-            };
-            reader.readAsDataURL(blob);
-          }
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        // Close mobile menu if open
+        if (mainNav.classList.contains('show')) {
+          mainNav.classList.remove('show');
         }
       });
-  
-      const accordion = document.querySelector('.accordion');
-      const accordionHeader = accordion.querySelector('h3');
-  
-      accordionHeader.addEventListener('click', () => {
-        accordion.classList.toggle('active');
-      });
-  
-      const carousel = document.querySelector('.carousel-slide');
-      let currentIndex = 0;
-  
-      function moveCarousel() {
-        const itemWidth = 220; // 200px width + 20px margin
-        const maxIndex = carousel.children.length;
-        
-        currentIndex++;
-        if (currentIndex >= maxIndex / 2) {
-          currentIndex = 0;
-        }
-        
-        carousel.style.transform = `translateX(-${currentIndex * itemWidth * 2}px)`;
-      }
-  
-      // Auto-scroll the carousel every 3 seconds
-      setInterval(moveCarousel, 3000);
-  
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mainNav = document.querySelector('.main-nav ul');
-  
-      menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('show');
-      });
-  
-      // Background options functionality
-      function showBackgroundOptions() {
-        document.getElementById('background-options').style.display = 'block';
-      }
-  
-      function changeBackground(selectedBackground) {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const resultImg = document.getElementById('resultImage');
-        
-        canvas.width = resultImg.width;
-        canvas.height = resultImg.height;
-        
-        // Draw background
-        const bgImg = new Image();
-        bgImg.onload = () => {
-          ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-          
-          // Draw result image
-          ctx.drawImage(resultImg, 0, 0);
-          
-          // Update result image
-          resultImg.src = canvas.toDataURL();
-        };
-        bgImg.src = selectedBackground.src;
-      }
-  
-      const backgroundOptions = document.querySelectorAll('.background-option');
-      backgroundOptions.forEach(option => {
-        option.addEventListener('click', () => {
-          backgroundOptions.forEach(opt => opt.classList.remove('selected'));
-          option.classList.add('selected');
-          changeBackground(option);
-        });
-      });
-  
-      document.querySelectorAll('.main-nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-          // Close mobile menu if open
-          if (mainNav.classList.contains('show')) {
-            mainNav.classList.remove('show');
-          }
-        });
-      });
-    </script>
-  </body></html>
+    });
+  </script>
+</body></html>
