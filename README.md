@@ -48,7 +48,8 @@ Si deseas contribuir a este proyecto, por favor siéntete libre de abrir un **is
 
 ## Enlaces
 
-- [![Probar el quita fondo](https://img.shields.io/badge/Probar%20el%20editor-Visítanos-blue?style=for-the-badge)](https://www.aovalle.space/)
+[![Quitafondo](https://img.shields.io/badge/Quitafondo-yellow?style=for-the-badge)](https://www.aovalle.space/)
+
 
 - [Repositorio de GitHub](https://github.com/jacar/quitafondo)
 
